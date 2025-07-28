@@ -33,7 +33,10 @@ const AdminDashboard = () => {
       category: "Workshop",
       description: "Join us for an exciting day of tech talks and workshops",
       image: "https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=400",
-      date: "2025-03-15",
+      date: "2025-03-15T10:00",
+      location: "Campus",
+      host: "MIT College of Engineering",
+      registrationLink: "https://example.com/register1",
       views: 1250,
       registrations: 85
     },
@@ -43,7 +46,10 @@ const AdminDashboard = () => {
       category: "Cultural",
       description: "Celebrate diversity with music, dance, and art",
       image: "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=400",
-      date: "2025-03-20",
+      date: "2025-03-20T18:00",
+      location: "Mumbai",
+      host: "MIT College of Engineering",
+      registrationLink: "https://example.com/register2",
       views: 2100,
       registrations: 320
     },
@@ -53,7 +59,10 @@ const AdminDashboard = () => {
       category: "Sports",
       description: "Compete in various sports and showcase your talent",
       image: "https://images.pexels.com/photos/863988/pexels-photo-863988.jpeg?auto=compress&cs=tinysrgb&w=400",
-      date: "2025-03-25",
+      date: "2025-03-25T09:00",
+      location: "Campus",
+      host: "MIT College of Engineering",
+      registrationLink: "https://example.com/register3",
       views: 850,
       registrations: 150
     }
@@ -64,7 +73,12 @@ const AdminDashboard = () => {
     category: 'Workshop',
     description: '',
     image: '',
-    date: ''
+    date: '',
+    time: '',
+    location: '',
+    host: '',
+    registrationLink: '',
+    mediaType: 'image' // 'image' or 'video'
   });
 
   const stats = [
@@ -124,6 +138,7 @@ const AdminDashboard = () => {
     const poster = {
       id: posters.length + 1,
       ...newPoster,
+      date: `${newPoster.date}T${newPoster.time}`,
       views: 0,
       registrations: 0
     };
@@ -133,7 +148,12 @@ const AdminDashboard = () => {
       category: 'Workshop',
       description: '',
       image: '',
-      date: ''
+      date: '',
+      time: '',
+      location: '',
+      host: '',
+      registrationLink: '',
+      mediaType: 'image'
     });
     setActiveTab('posters');
   };
@@ -314,7 +334,7 @@ const AdminDashboard = () => {
                     <select
                       value={newPoster.category}
                       onChange={(e) => setNewPoster({...newPoster, category: e.target.value})}
-                      className="w-full px-4 py-3 bg-black/5 border border-black/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:scale-105 transition-all duration-500"
+                      className="w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:scale-105 transition-all duration-500"
                     >
                       <option value="Fest">Fest</option>
                       <option value="Workshop">Workshop</option>
@@ -323,32 +343,104 @@ const AdminDashboard = () => {
                     </select>
                   </div>
 
-                  <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
-                      Event Date
-                    </label>
-                    <input
-                      type="date"
-                      value={newPoster.date}
-                      onChange={(e) => setNewPoster({...newPoster, date: e.target.value})}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
-                      required
-                    />
+                  <div className="flex space-x-4">
+                    <div className="flex-1">
+                      <label className="block text-white/80 text-sm font-medium mb-2">
+                        Event Date
+                      </label>
+                      <input
+                        type="date"
+                        value={newPoster.date}
+                        onChange={(e) => setNewPoster({...newPoster, date: e.target.value})}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                        required
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-white/80 text-sm font-medium mb-2">
+                        Event Time
+                      </label>
+                      <input
+                        type="time"
+                        value={newPoster.time}
+                        onChange={(e) => setNewPoster({...newPoster, time: e.target.value})}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                        required
+                      />
+                    </div>
                   </div>
 
                   <div>
                     <label className="block text-white/80 text-sm font-medium mb-2">
-                      Image URL
+                      Media Type
                     </label>
-                    <input
-                      type="url"
-                      value={newPoster.image}
-                      onChange={(e) => setNewPoster({...newPoster, image: e.target.value})}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
-                      placeholder="https://example.com/image.jpg"
-                      required
-                    />
+                    <select
+                      value={newPoster.mediaType}
+                      onChange={(e) => setNewPoster({...newPoster, mediaType: e.target.value})}
+                      className="w-full px-4 py-3 bg-black/5 border border-black/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:scale-105 transition-all duration-500"
+                    >
+                      <option value="image">Image</option>
+                      <option value="video">Video</option>
+                    </select>
                   </div>
+
+                  {newPoster.mediaType === 'image' ? (
+                    <div>
+                      <label className="block text-white/80 text-sm font-medium mb-2">
+                        Image URL or Upload
+                      </label>
+                      <input
+                        type="url"
+                        value={newPoster.image}
+                        onChange={(e) => setNewPoster({...newPoster, image: e.target.value})}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                        placeholder="https://example.com/image.jpg"
+                      />
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setNewPoster({...newPoster, image: reader.result});
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        className="mt-2 w-full text-white"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="block text-white/80 text-sm font-medium mb-2">
+                        Video URL or Upload
+                      </label>
+                      <input
+                        type="url"
+                        value={newPoster.image}
+                        onChange={(e) => setNewPoster({...newPoster, image: e.target.value})}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                        placeholder="https://example.com/video.mp4"
+                      />
+                      <input
+                        type="file"
+                        accept="video/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setNewPoster({...newPoster, image: reader.result});
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        }}
+                        className="mt-2 w-full text-white"
+                      />
+                    </div>
+                  )}
 
                   <div>
                     <label className="block text-white/80 text-sm font-medium mb-2">
@@ -360,6 +452,48 @@ const AdminDashboard = () => {
                       className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500 resize-none"
                       rows={4}
                       placeholder="Describe your event..."
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm font-medium mb-2">
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      value={newPoster.location}
+                      onChange={(e) => setNewPoster({...newPoster, location: e.target.value})}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                      placeholder="Campus or City (e.g., Mumbai)"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm font-medium mb-2">
+                      Event Host
+                    </label>
+                    <input
+                      type="text"
+                      value={newPoster.host}
+                      onChange={(e) => setNewPoster({...newPoster, host: e.target.value})}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                      placeholder="College or Organization Name"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-white/80 text-sm font-medium mb-2">
+                      Registration Link
+                    </label>
+                    <input
+                      type="url"
+                      value={newPoster.registrationLink}
+                      onChange={(e) => setNewPoster({...newPoster, registrationLink: e.target.value})}
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:scale-105 transition-all duration-500"
+                      placeholder="https://example.com/register"
                       required
                     />
                   </div>
@@ -406,6 +540,7 @@ const AdminDashboard = () => {
               </AnimatedSection>
 
               {/* Posters Grid */}
+              <br />
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredPosters.map((poster, index) => (
                   <AnimatedSection
