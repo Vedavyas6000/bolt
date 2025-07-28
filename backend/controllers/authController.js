@@ -5,7 +5,8 @@ const registerUser = async (req, res) => {
   const { name, email, password, role, college_name, admin_name, contact_number } = req.body;
   const file = req.file;
 
-  console.log('RegisterUser request body:', req.body);
+/* Removed console.log to prevent sensitive info logging */
+// console.log('RegisterUser request body:', req.body);
   console.log('Uploaded file:', file);
 
   if (role === 'student' && (!name || !email || !password)) {
