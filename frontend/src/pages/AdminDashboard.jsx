@@ -133,29 +133,64 @@ const AdminDashboard = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const handleCreatePoster = (e) => {
+  const handleCreatePoster = async (e) => {
     e.preventDefault();
-    const poster = {
-      id: posters.length + 1,
-      ...newPoster,
-      date: `${newPoster.date}T${newPoster.time}`,
-      views: 0,
-      registrations: 0
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You must be logged in to create an event.');
+      return;
+    }
+
+    const eventData = {
+      title: newPoster.title,
+      category: newPoster.category,
+      description: newPoster.description,
+      image: newPoster.image,
+      event_datetime: `${newPoster.date}T${newPoster.time}`,
+      location: newPoster.location,
+      host: newPoster.host,
+      registration_link: newPoster.registrationLink,
     };
-    setPosters([...posters, poster]);
-    setNewPoster({
-      title: '',
-      category: 'Workshop',
-      description: '',
-      image: '',
-      date: '',
-      time: '',
-      location: '',
-      host: '',
-      registrationLink: '',
-      mediaType: 'image'
-    });
-    setActiveTab('posters');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(eventData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || 'Failed to create event.');
+        return;
+      }
+
+      // Add the new event to the posters list
+      setPosters([...posters, { id: data.eventId, ...eventData, views: 0, registrations: 0 }]);
+
+      // Reset form
+      setNewPoster({
+        title: '',
+        category: 'Workshop',
+        description: '',
+        image: '',
+        date: '',
+        time: '',
+        location: '',
+        host: '',
+        registrationLink: '',
+        mediaType: 'image',
+      });
+
+      setActiveTab('posters');
+    } catch (error) {
+      alert('Server error. Please try again later.');
+    }
   };
 
   const handleDeletePoster = (id) => {

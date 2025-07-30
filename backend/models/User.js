@@ -26,6 +26,18 @@ const User = {
     });
   },
 
+  findById: (id) => {
+    return new Promise((resolve, reject) => {
+      let query = 'SELECT * FROM colleges WHERE id = ?';
+      connection.query(query, [id], (error, results) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(results[0]);
+      });
+    });
+  },
+
   findByEmail: (email, role) => {
     return new Promise((resolve, reject) => {
       let query = '';
