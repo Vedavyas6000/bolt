@@ -1,0 +1,49 @@
+services:
+  # Backend API Service
+  - type: web
+    name: collegebuzz-backend
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MYSQL_HOST
+        fromDatabase:
+          name: collegebuzz-db
+          property: host
+      - key: MYSQL_USER
+        fromDatabase:
+          name: collegebuzz-db
+          property: user
+      - key: MYSQL_PASSWORD
+        fromDatabase:
+          name: collegebuzz-db
+          property: password
+      - key: MYSQL_DATABASE
+        fromDatabase:
+          name: collegebuzz-db
+          property: database
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+
+  # Frontend Service
+  - type: web
+    name: collegebuzz-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: collegebuzz-backend
+          type: web
+          property: host
+
+databases:
+  - name: collegebuzz-db
+    databaseName: collegebuzz
+    user: collegebuzz
+    plan: starter
