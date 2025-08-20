@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AnimatedSection from '../components/AnimatedSection.jsx';
-import FloatingElements from '../components/FloatingElements.jsx';
+import AnimatedBackground from '../components/AnimatedBackground.jsx';
+import EventCard3D from '../components/EventCard3D.jsx';
 import { 
   ChevronLeft, 
   ChevronRight, 
@@ -14,7 +15,10 @@ import {
   ArrowRight,
   Zap,
   Shield,
-  Globe
+  Globe,
+  Sparkles,
+  Target,
+  Rocket
 } from 'lucide-react';
 
 const Home = () => {
@@ -178,34 +182,34 @@ const Home = () => {
 
   const features = [
     {
-      icon: Zap,
-      title: "Easy Login",
-      description: "Quick and secure authentication for students and colleges"
+      icon: Rocket,
+      title: "Instant Discovery",
+      description: "Find events that match your vibe in seconds with smart recommendations"
     },
     {
-      icon: Search,
-      title: "Event Discovery",
-      description: "Find the perfect events tailored to your interests"
+      icon: Sparkles,
+      title: "Live Updates",
+      description: "Real-time notifications so you never miss the hottest events on campus"
     },
     {
       icon: Users,
-      title: "College Community",
-      description: "Connect with peers and build lasting relationships"
+      title: "Campus Network",
+      description: "Connect with students across colleges and expand your social circle"
     },
     {
-      icon: Shield,
-      title: "Secure Platform",
-      description: "Your data is protected with enterprise-grade security"
+      icon: Target,
+      title: "Smart Matching",
+      description: "AI-powered event suggestions based on your interests and activity"
     },
     {
-      icon: Globe,
-      title: "Global Reach",
-      description: "Access events from colleges worldwide"
+      icon: Zap,
+      title: "One-Click Join",
+      description: "Register for events instantly without the hassle of multiple forms"
     },
     {
       icon: Star,
-      title: "Premium Experience",
-      description: "Enjoy smooth, lag-free event browsing and registration"
+      title: "Exclusive Access",
+      description: "Get early access to limited events and VIP experiences"
     }
   ];
 
@@ -225,40 +229,49 @@ const Home = () => {
   };
 
   return (
-    <div className="pt-16">
+    <div className="bg-black min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <FloatingElements />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-purple-900/60 to-slate-900/80" />
+        <AnimatedBackground />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-gray-900/40 to-black/80" />
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection animation="fadeInUp" delay={200}>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Discover Amazing{' '}
-              <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
-                College Events
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight tracking-tight">
+              Don't miss a{' '}
+              <span className="bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent animate-pulse">
+                moment
               </span>
             </h1>
           </AnimatedSection>
           <AnimatedSection animation="fadeInUp" delay={400}>
-            <p className="text-xl sm:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
-              Connect with your campus community and never miss out on the events that matter to you.
+            <p className="text-2xl sm:text-3xl text-gray-300 mb-4 max-w-4xl mx-auto font-bold">
+              Your campus, your buzz.
+            </p>
+            <p className="text-lg sm:text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+              Discover, join, and create unforgettable experiences with the most vibrant college community platform.
             </p>
           </AnimatedSection>
           <AnimatedSection animation="fadeInUp" delay={600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/student-auth"
-                className="group px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl font-semibold text-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 relative overflow-hidden"
+                className="group px-10 py-5 bg-gradient-to-r from-yellow-400 to-green-400 text-black rounded-2xl font-black text-xl hover:from-yellow-300 hover:to-green-300 transition-all duration-500 transform hover:scale-105 hover:shadow-neon relative overflow-hidden"
               >
-                <span className="relative z-10">Join Now</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 flex items-center space-x-2">
+                  <Rocket className="w-6 h-6" />
+                  <span>Start Exploring</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
               <Link
                 to="/college-auth"
-                className="group px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/40 transition-all duration-500 transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
+                className="group px-10 py-5 bg-gray-900/80 backdrop-blur-sm border-2 border-gray-700 text-white rounded-2xl font-bold text-xl hover:bg-gray-800/80 hover:border-yellow-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
               >
-                <span className="relative z-10">For Colleges</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 flex items-center space-x-2">
+                  <Sparkles className="w-6 h-6" />
+                  <span>List Events</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
             </div>
           </AnimatedSection>
@@ -266,70 +279,34 @@ const Home = () => {
       </section>
 
       {/* Events Carousel */}
-      <section id="events" className="relative py-20 bg-black/30 backdrop-blur-sm overflow-hidden">
-        <FloatingElements />
+      <section id="events" className="relative py-20 bg-gray-900/50 backdrop-blur-sm overflow-hidden">
+        <AnimatedBackground />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection animation="fadeInUp" className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-white mb-4 bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
-              Trending Events
+            <h2 className="text-5xl font-black text-white mb-6 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent">
+              🔥 Trending Events
             </h2>
-            <p className="text-xl text-white/70">Join thousands of students at these popular events</p>
+            <p className="text-xl text-gray-300 font-semibold">Join thousands of students at these epic events</p>
           </AnimatedSection>
 
-          <AnimatedSection animation="scaleIn" delay={300} className="relative max-w-7xl mx-auto">
-            <div className="overflow-hidden rounded-2xl">
+          <AnimatedSection animation="scaleIn" delay={300} className="relative max-w-8xl mx-auto">
+            <div className="overflow-hidden rounded-3xl">
               <div 
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {eventSlides.map((slideEvents, slideIndex) => (
                   <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
                       {slideEvents.map((event) => (
-                        <div key={event.id} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 group cursor-pointer">
-                          <div className="relative h-32">
-                            <img 
-                              src={event.image} 
-                              alt={event.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <div className="absolute top-2 left-2">
-                              <span className={`px-2 py-1 bg-gradient-to-r ${getCategoryColor(event.category)} text-white text-xs font-medium rounded-full shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>
-                                {event.category}
-                              </span>
-                            </div>
-                            <div className="absolute top-2 right-2 flex items-center space-x-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1 transform group-hover:scale-110 transition-transform duration-300">
-                              <Star className="w-3 h-3 text-yellow-400 fill-current" />
-                              <span className="text-white text-xs">{event.rating}</span>
-                            </div>
-                          </div>
-                          <div className="p-3">
-                            <h3 className="text-sm font-bold text-white mb-2 line-clamp-2 leading-tight">{event.title}</h3>
-                            <div className="space-y-1 mb-3">
-                              <div className="flex items-center space-x-1 text-white/70">
-                                <Calendar size={12} />
-                                <span className="text-xs">{event.date}</span>
-                              </div>
-                              <div className="flex items-center space-x-1 text-white/70">
-                                <Clock size={12} />
-                                <span className="text-xs">{event.time}</span>
-                              </div>
-                              <div className="flex items-center space-x-1 text-white/70">
-                                <MapPin size={12} />
-                                <span className="text-xs">{event.location}</span>
-                              </div>
-                              <div className="flex items-center space-x-1 text-white/70">
-                                <Users size={12} />
-                                <span className="text-xs">{event.attendees} attending</span>
-                              </div>
-                            </div>
-                            <button className="group/btn w-full px-3 py-2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-medium hover:from-indigo-600 hover:to-purple-600 transition-all duration-500 transform hover:scale-105 text-xs relative overflow-hidden">
-                              <span className="relative z-10">Join Event</span>
-                              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
-                            </button>
-                          </div>
-                        </div>
+                        <EventCard3D
+                          key={event.id}
+                          event={event}
+                          index={slideIndex * 4 + slideEvents.indexOf(event)}
+                          onJoin={(event) => console.log('Join event:', event)}
+                          onBookmark={(id) => console.log('Bookmark event:', id)}
+                          onShare={(event) => console.log('Share event:', event)}
+                        />
                       ))}
                     </div>
                   </div>
@@ -340,27 +317,27 @@ const Home = () => {
             {/* Navigation buttons */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/10 hover:scale-110 hover:shadow-lg transition-all duration-500"
+              className="absolute left-6 top-1/2 transform -translate-y-1/2 p-4 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-full text-white hover:bg-gray-800 hover:scale-110 hover:shadow-neon transition-all duration-500"
             >
               <ChevronLeft size={24} />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/10 hover:scale-110 hover:shadow-lg transition-all duration-500"
+              className="absolute right-6 top-1/2 transform -translate-y-1/2 p-4 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-full text-white hover:bg-gray-800 hover:scale-110 hover:shadow-neon transition-all duration-500"
             >
               <ChevronRight size={24} />
             </button>
 
             {/* Slide indicators */}
-            <div className="flex justify-center space-x-2 mt-6">
+            <div className="flex justify-center space-x-3 mt-8">
               {eventSlides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-500 hover:scale-125 ${
+                  className={`w-4 h-4 rounded-full transition-all duration-500 hover:scale-125 ${
                     index === currentSlide 
-                      ? 'bg-gradient-to-r from-indigo-400 to-purple-400 shadow-lg' 
-                      : 'bg-white/30 hover:bg-white/50'
+                      ? 'bg-gradient-to-r from-yellow-400 to-green-400 shadow-neon' 
+                      : 'bg-gray-600 hover:bg-gray-500'
                   }`}
                 />
               ))}
@@ -370,33 +347,33 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="relative py-20 overflow-hidden">
-        <FloatingElements />
+      <section className="relative py-20 bg-black overflow-hidden">
+        <AnimatedBackground />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection animation="fadeInUp" className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
-              Why Students Love Us
+            <h2 className="text-5xl font-black text-white mb-6 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent">
+              ⚡ Why Students Are Obsessed
             </h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              The most trusted platform for discovering and joining college events
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto font-semibold">
+              The ultimate platform that's changing how students discover and experience campus life
             </p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {features.map((feature, index) => (
               <AnimatedSection
                 key={index}
                 animation="fadeInUp"
                 delay={index * 100}
-                className="group p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl hover:bg-white/8 hover:border-white/20 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 transform hover:scale-105 cursor-pointer"
+                className="group p-8 bg-gray-900/60 backdrop-blur-sm border border-gray-700/50 rounded-3xl hover:bg-gray-800/60 hover:border-yellow-400/30 hover:shadow-neon transition-all duration-500 transform hover:scale-105 cursor-pointer"
               >
-                <div className="p-4 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl w-fit mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
-                  <feature.icon className="w-8 h-8 text-white group-hover:animate-pulse" />
+                <div className="p-5 bg-gradient-to-r from-yellow-400 to-green-400 rounded-2xl w-fit mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+                  <feature.icon className="w-10 h-10 text-black group-hover:animate-bounce" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-indigo-200 transition-colors duration-300">
+                <h3 className="text-2xl font-black text-white mb-4 group-hover:text-yellow-400 transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-white/70 leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300 font-medium">
                   {feature.description}
                 </p>
               </AnimatedSection>
@@ -406,123 +383,128 @@ const Home = () => {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="relative py-20 bg-black/30 backdrop-blur-sm overflow-hidden">
-        <FloatingElements />
+      <section id="about" className="relative py-20 bg-gray-900/50 backdrop-blur-sm overflow-hidden">
+        <AnimatedBackground />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection animation="fadeInLeft">
-              <h2 className="text-4xl font-bold text-white mb-6 bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
-                Built for Students, By Students
+              <h2 className="text-5xl font-black text-white mb-8 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent">
+                Built by Students, For Students
               </h2>
-              <p className="text-lg text-white/80 mb-6 leading-relaxed">
-                We understand what students want - easy access to events, seamless registration, 
-                and a community that celebrates campus life. Our platform is designed with 
-                student needs at the forefront.
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed font-semibold">
+                We get it. You want to find cool events, connect with awesome people, and make the most 
+                of your college experience without the hassle.
               </p>
-              <p className="text-lg text-white/80 mb-8 leading-relaxed">
-                From hackathons to cultural fests, sports tournaments to academic workshops - 
-                discover events that match your interests and connect with like-minded peers 
-                across your campus and beyond.
+              <p className="text-lg text-gray-400 mb-10 leading-relaxed">
+                That's why we created College Buzz - the platform that actually understands student life. 
+                No boring interfaces, no complicated processes. Just pure, instant access to the events 
+                that matter to you.
               </p>
               <Link
-                to="/about"
-                className="group inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-medium hover:from-indigo-600 hover:to-purple-600 transition-all duration-500 transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
+                to="/student-auth"
+                className="group inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-green-400 text-black rounded-xl font-bold hover:from-yellow-300 hover:to-green-300 transition-all duration-500 transform hover:scale-105 hover:shadow-neon relative overflow-hidden"
               >
-                <span className="relative z-10">Learn More</span>
-                <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 text-lg">Join the Movement</span>
+                <ArrowRight size={20} className="relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
             </AnimatedSection>
             <AnimatedSection animation="fadeInRight" className="relative">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 <img
                   src="https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=400"
                   alt="Students collaborating"
-                  className="w-full h-48 object-cover rounded-lg hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-xl"
+                  className="w-full h-56 object-cover rounded-2xl hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-neon"
                 />
                 <img
                   src="https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg?auto=compress&cs=tinysrgb&w=400"
                   alt="College event"
-                  className="w-full h-48 object-cover rounded-lg mt-8 hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-xl"
+                  className="w-full h-56 object-cover rounded-2xl mt-8 hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-neon"
                 />
                 <img
                   src="https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=400"
                   alt="Campus life"
-                  className="w-full h-48 object-cover rounded-lg -mt-8 hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-xl"
+                  className="w-full h-56 object-cover rounded-2xl -mt-8 hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-neon"
                 />
                 <img
                   src="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=400"
                   alt="Students studying"
-                  className="w-full h-48 object-cover rounded-lg hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-xl"
+                  className="w-full h-56 object-cover rounded-2xl hover:scale-105 transition-transform duration-500 shadow-lg hover:shadow-neon"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-lg pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-green-400/10 rounded-2xl pointer-events-none" />
             </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 overflow-hidden">
-        <FloatingElements />
+      <section className="relative py-20 bg-black overflow-hidden">
+        <AnimatedBackground />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection animation="scaleIn" className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-white mb-6 bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-transparent">
-              Ready to Level Up Your Campus Life?
+            <h2 className="text-6xl font-black text-white mb-8 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent">
+              Ready to Own Your Campus?
             </h2>
-            <p className="text-xl text-white/80 mb-8">
-              Join the community where every event is an opportunity to grow, learn, and have fun.
+            <p className="text-2xl text-gray-300 mb-12 font-bold">
+              Stop scrolling. Start living. Your next adventure is one click away.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 to="/student-auth"
-                className="group px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-xl font-semibold text-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25 relative overflow-hidden"
+                className="group px-12 py-6 bg-gradient-to-r from-yellow-400 to-green-400 text-black rounded-2xl font-black text-2xl hover:from-yellow-300 hover:to-green-300 transition-all duration-500 transform hover:scale-105 hover:shadow-neon relative overflow-hidden"
               >
-                <span className="relative z-10">Start Exploring</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 flex items-center space-x-3">
+                  <Rocket className="w-8 h-8" />
+                  <span>Let's Go!</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
               <Link
                 to="/college-auth"
-                className="group px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/20 text-white rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/40 transition-all duration-500 transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
+                className="group px-12 py-6 bg-gray-900/80 backdrop-blur-sm border-2 border-gray-700 text-white rounded-2xl font-bold text-2xl hover:bg-gray-800/80 hover:border-yellow-400/50 transition-all duration-500 transform hover:scale-105 hover:shadow-xl relative overflow-hidden"
               >
-                <span className="relative z-10">List Your Events</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <span className="relative z-10 flex items-center space-x-3">
+                  <Sparkles className="w-8 h-8" />
+                  <span>Host Events</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Link>
             </div>
           </AnimatedSection>
         </div>
       </section>
       {/* Contact Section */}
-      <section id="contact" className="relative py-20 bg-black/30 backdrop-blur-sm overflow-hidden">
-        <FloatingElements />
+      <section id="contact" className="relative py-20 bg-gray-900/50 backdrop-blur-sm overflow-hidden">
+        <AnimatedBackground />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6 bg-gradient-to-r from-white to-indigo-200 bg-clip-text text-transparent">
-            Contact Us
+          <h2 className="text-5xl font-black text-white mb-8 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent">
+            💬 Let's Connect
           </h2>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Have questions or want to get involved? Reach out to us!
+          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto font-semibold">
+            Got ideas? Questions? Just want to say hi? We're all ears!
           </p>
-          <form className="max-w-xl mx-auto space-y-6">
+          <form className="max-w-2xl mx-auto space-y-6">
             <input
               type="text"
               placeholder="Your Name"
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-6 py-4 rounded-xl bg-gray-900/60 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-300"
             />
             <input
               type="email"
               placeholder="Your Email"
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-6 py-4 rounded-xl bg-gray-900/60 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-300"
             />
             <textarea
               placeholder="Your Message"
-              rows="4"
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              rows="5"
+              className="w-full px-6 py-4 rounded-xl bg-gray-900/60 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-300 resize-none"
             />
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-lg font-semibold hover:from-indigo-600 hover:to-purple-600 transition-all duration-500"
+              className="w-full py-5 bg-gradient-to-r from-yellow-400 to-green-400 text-black rounded-xl font-black text-lg hover:from-yellow-300 hover:to-green-300 transition-all duration-500 transform hover:scale-105 hover:shadow-neon"
             >
-              Send Message
+              Send Message 🚀
             </button>
           </form>
         </div>
